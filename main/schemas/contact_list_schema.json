@@ -1,0 +1,24 @@
+{
+    "$jsonSchema": {
+        "bsonType": "object",
+        "required": [ "contact_name", "contact_phone_number"],
+        "properties": {
+            "contact_name": {
+                "bsonType": "string",
+                "description": ""
+            },
+            "contact_phone_number": {
+                "bsonType": "string",
+                "description": ""
+            },
+            "contact_email": {
+                "bsonType": "string",
+                "description": ""
+            },
+            "additional_info": {
+                "bsonType": "string",
+                "description": ""
+            }
+        }
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "$jsonSchema": {
+        "bsonType": "object",
+        "required": [ "_id", "patient_name", "patient_email", "patient_nickname", "patient_birthday",
+            "patient_phone_number", "patient_address", "reference_contact_name", "reference_contact_number"],
+        "properties": {
+            "_id": {
+                "bsonType": "string",
+                "description": "User identification."
+            },
+            "patient_name": {
+                "bsonType": "string",
+                "description": ""
+            },
+            "patient_email": {
+                "bsonType": "string",
+                "description": ""
+            },
+            "patient_nickname": {
+                "bsonType": "string",
+                "description": ""
+            },
+            "patient_birthday": {
+                "bsonType": "string",
+                "description": ""
+            },
+            "patient_phone_number": {
+                "bsonType": "string",
+                "description": ""
+            },
+            "patient_address": {
+                "bsonType": "string",
+                "description": ""
+            },
+            "reference_contact_name": {
+                "bsonType": "string",
+                "description": ""
+            },
+            "reference_contact_number": {
+                "bsonType": "string",
+                "description": ""
+            },
+            "reference_doctor": {
+                "bsonType": "string",
+                "description": ""
+            },
+            "additional_info": {
+                "bsonType": "string",
+                "description": ""
+            },
+            "old_id": {
+                "bsonType": "string",
+                "description": ""
+            }
+        }
+    }
+}

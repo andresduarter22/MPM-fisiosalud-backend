@@ -3,8 +3,8 @@ Working Area
     Area_id: PK, AUTO, NOT_NULL, int
     Area_name: str, NOT_NULL
     Area_total_capacity: int
-    Aviability: ENUM
-    """
+    Aviability: Boolean
+"""
 from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, Integer, String, Boolean
 

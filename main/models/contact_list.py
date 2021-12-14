@@ -8,10 +8,15 @@ Contact List
 """
 
 from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy import Column, Integer, String, Text
 
 Base = declarative_base()
 
 
 class ContactList(Base):
     __tablename__ = 'contact_list'
+    contact_id = Column(Integer, primary_key=True, nullable=False)
+    contact_name = Column(String(300), nullable=False)
+    contact_phone_number = Column(String(20), nullable=False)
+    contact_email = Column(String(50))
+    additional_info = Column(Text)

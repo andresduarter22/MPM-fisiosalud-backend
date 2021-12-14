@@ -1,0 +1,34 @@
+{
+    "$jsonSchema": {
+        "bsonType": "object",
+        "required": [
+            "_id",
+            "staff_name",
+            "staff_phone_number",
+            "staff_email",
+            "staff_role"
+        ],
+        "properties": {
+            "_id": {
+                "bsonType": "string",
+                "description": "Staff identification."
+            },
+            "staff_name": {
+                "bsonType": "string",
+                "description": ""
+            },
+            "staff_phone_number": {
+                "bsonType": "string",
+                "description": ""
+            },
+            "staff_email": {
+                "bsonType": "string",
+                "description": ""
+            },
+            "staff_role": {
+                "bsonType": "string",
+                "description": ""
+            }
+        }
+    }
+}

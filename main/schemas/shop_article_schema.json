@@ -1,0 +1,34 @@
+{
+    "$jsonSchema": {
+        "bsonType": "object",
+        "required": [
+            "article_name",
+            "basic_info",
+            "number_of_items",
+            "price",
+            "currency"
+        ],
+        "properties": {
+            "article_name": {
+                "bsonType": "string",
+                "description": ""
+            },
+            "basic_info": {
+                "bsonType": "string",
+                "description": ""
+            },
+            "number_of_items": {
+                "bsonType": "int",
+                "description": ""
+            },
+            "price": {
+                "bsonType": "float",
+                "description": ""
+            },
+            "currency": {
+                "bsonType": "enum",
+                "description": ""
+            }
+        }
+    }
+}

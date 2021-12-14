@@ -1,0 +1,8 @@
+"""
+
+"""
+DB_USER_NAME = "usernameExample"
+DB_USER_PASSWORD = "passwordExample"
+DB_HOST_NAME = "hostnameExample"
+DB_PORT = "portExample"
+DB_DATABASE = "databaseExample"

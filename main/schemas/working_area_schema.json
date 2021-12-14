@@ -1,0 +1,24 @@
+{
+    "$jsonSchema": {
+        "bsonType": "object",
+        "required": [
+            "area_name",
+            "area_total_capacity",
+            "availability"
+        ],
+        "properties": {
+            "area_name": {
+                "bsonType": "string",
+                "description": ""
+            },
+            "area_total_capacity": {
+                "bsonType": "int",
+                "description": ""
+            },
+            "availability": {
+                "bsonType": "boolean",
+                "description": ""
+            }
+        }
+    }
+}
