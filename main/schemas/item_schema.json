@@ -8,11 +8,11 @@
         "properties": {
             "item_name": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Name of the item."
             },
             "item_description": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Description of the item."
             }
         }
     }

@@ -1,15 +1,18 @@
 {
     "$jsonSchema": {
         "bsonType": "object",
-        "required": [ "path", "description"],
+        "required": [
+            "path",
+            "description"
+        ],
         "properties": {
             "patient": {
                 "bsonType": "object",
-                "description": ""
+                "description": "Information of the patient that is related with the document."
             },
             "path": {
-                "bsonType": "int",
-                "description": ""
+                "bsonType": "string",
+                "description": "Path of the docuemnt inside the server."
             },
             "description": {
                 "bsonType": "string",

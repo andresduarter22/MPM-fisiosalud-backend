@@ -1,8 +1,17 @@
 {
     "$jsonSchema": {
         "bsonType": "object",
-        "required": [ "_id", "patient_name", "patient_email", "patient_nickname", "patient_birthday",
-            "patient_phone_number", "patient_address", "reference_contact_name", "reference_contact_number"],
+        "required": [
+            "_id",
+            "patient_name",
+            "patient_email",
+            "patient_nickname",
+            "patient_birthday",
+            "patient_phone_number",
+            "patient_address",
+            "reference_contact_name",
+            "reference_contact_number"
+        ],
         "properties": {
             "_id": {
                 "bsonType": "string",
@@ -10,47 +19,47 @@
             },
             "patient_name": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Name of the patient."
             },
             "patient_email": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Email of the patient."
             },
             "patient_nickname": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Nickname of the patient."
             },
             "patient_birthday": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Birthday date of the patient."
             },
             "patient_phone_number": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Phone number of the patient."
             },
             "patient_address": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Address to contact with the patient."
             },
             "reference_contact_name": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Referenece contact name of the patient."
             },
             "reference_contact_number": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Referenece contact phone number of the patient."
             },
             "reference_doctor": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Name of the doctor of the patient."
             },
             "additional_info": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Aditional information related with the patient."
             },
             "old_id": {
                 "bsonType": "string",
-                "description": ""
+                "description": "ID of the patient on previous patient system."
             }
         }
     }

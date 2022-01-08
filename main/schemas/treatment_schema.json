@@ -9,7 +9,7 @@
         "properties": {
             "patiten_id": {
                 "bsonType": "string",
-                "description": ""
+                "description": "User identification."
             },
             "basic_info": {
                 "bsonType": "string",

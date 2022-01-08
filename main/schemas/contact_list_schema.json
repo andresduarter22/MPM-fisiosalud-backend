@@ -5,19 +5,19 @@
         "properties": {
             "contact_name": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Name of the contact on list."
             },
             "contact_phone_number": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Phone number of the contact."
             },
             "contact_email": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Email address number of the contact."
             },
             "additional_info": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Extra information of the contact."
             }
         }
     }

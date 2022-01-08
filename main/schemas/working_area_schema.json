@@ -9,15 +9,15 @@
         "properties": {
             "area_name": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Name of the working area."
             },
             "area_total_capacity": {
                 "bsonType": "int",
-                "description": ""
+                "description": "Total patient capacity per working area."
             },
             "availability": {
                 "bsonType": "boolean",
-                "description": ""
+                "description": "Status of the working area."
             }
         }
     }
