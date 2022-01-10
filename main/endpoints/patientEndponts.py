@@ -8,21 +8,21 @@ class PatientEndpoints(Resource):
         self.patient = Patient()
         
     def get(self):
-        response = jsonify(self.patient.selectAll())
+        data = request.get_json()
+        response = jsonify(self.patient.select(data['filter']))
         return response
 
     def post(self):
-        body = request.get_json(force=True)
-        print(type(body))
-        response = jsonify(self.patient.insert(body))
-        print(type(response))
+        data = request.get_json(force=True)
+        response = jsonify(self.patient.insert(data['body']))
         return response
     
-    def put(self, patient_id, body):
-
-        response = jsonify(self.patient.update(patient_id, body))
+    def put(self):
+        data = request.get_json(force=True)
+        response = jsonify(self.patient.update(data['filter'], data['body']))
         return response
 
-    def delete(self, patient_id):
-        response = jsonify(self.patient.delete(patient_id))
+    def delete(self):
+        data = request.get_json(force=True)
+        response = jsonify(self.patient.delete(data['patient_id']))
         return response

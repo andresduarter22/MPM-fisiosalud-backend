@@ -14,21 +14,12 @@ class Patient:
         """
         self.collection_name = "patient"
 
-    def select(self, filter):
+    def select(self, filter=None):
         """
         
         """
         try:
            return DbManager.get_instance().select(self.collection_name, filter)
-        except:
-            print("ay nooooo")
-
-    def selectAll(self):
-        """
-        
-        """
-        try:
-           return DbManager.get_instance().select(self.collection_name)
         except:
             print("ay nooooo")
 
