@@ -1,1 +1,1 @@
-collections = ['patient']
+collections = ['patient', 'shopArticle', 'item', 'contactList']

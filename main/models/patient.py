@@ -8,6 +8,7 @@ class Patient:
     """
     
     """
+
     def __init__(self):
         """
         
@@ -29,7 +30,6 @@ class Patient:
         """
         try:
             id = DbManager.get_instance().insertOne(self.collection_name, object)
-            print(id)
             return self.select({"_id": id})
         except:
             print("ay nooooo")

@@ -35,7 +35,6 @@ if __name__ == "__main__":
         "additional_info": "Test",
         "old_id": "1"
     }
-    
+
     FisiosaludAPI().run()
     # pprint.pprint(patient.selectAll())
-    

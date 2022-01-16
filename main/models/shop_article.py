@@ -1,24 +1,53 @@
 """
-Shop Article
-    Article_id: PK, AUTO, NOT_NULL, int
-    Article_name: str, NOT_NULL
-    Basic_info: str, NOT_NULL
-    Number_of_items: int, NOT_NULL
-    Price: float, NOT_NULL
-    Currency: ENUM, NOT_NULL
+File that contains all functions related with the shop article actions.
 """
-
-from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, Integer, String, Float, Enum
-
-Base = declarative_base()
+from main.database_manager.db_manager import DbManager
 
 
-class ShopArticle(Base):
-    __tablename__ = 'shop_article'
-    article_id = Column(Integer, primary_key=True, nullable=False)
-    article_name = Column(String(300), nullable=False)
-    basic_info = Column(String(300), nullable=False)
-    number_of_items = Column(Integer, nullable=False)
-    price = Column(Float, nullable=False)
-    currency = Column(Enum, nullable=False)
+class ShopArticle():
+    """
+
+    """
+
+    def __init__(self):
+        """
+
+        """
+        self.collection_name = "shopArticle"
+
+    def select(self, filter=None):
+        """
+
+        """
+        try:
+            response = DbManager.get_instance().select(self.collection_name, filter)
+            return response
+        except:
+            print("ay nooooo")
+
+    def insert(self, object):
+        """
+
+        """
+        try:
+            id = DbManager.get_instance().insertOne(self.collection_name, object)
+            return self.select({"_id": id})
+        except:
+            print("ay nooooo")
+
+    def update(self, filter, object):
+        """
+
+        """
+        try:
+            return DbManager.get_instance().updateOne(self.collection_name, filter, object)
+        except:
+            print("ay nooooo")
+
+    def delete(self, filter):
+        """
+        """
+        try:
+            DbManager.get_instance().delete(self.collection_name, filter)
+        except:
+            print("ay nooooo")

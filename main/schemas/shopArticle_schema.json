@@ -11,23 +11,23 @@
         "properties": {
             "article_name": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Name of the article."
             },
             "basic_info": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Description of the article."
             },
             "number_of_items": {
-                "bsonType": "int",
-                "description": ""
+                "bsonType": "number",
+                "description": "Number of items aviable for the article."
             },
             "price": {
-                "bsonType": "float",
-                "description": ""
+                "bsonType": "number",
+                "description": "Price of the article."
             },
             "currency": {
-                "bsonType": "enum",
-                "description": ""
+                "bsonType": "string",
+                "description": "Currency of the article's price."
             }
         }
     }

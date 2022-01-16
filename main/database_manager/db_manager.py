@@ -2,7 +2,6 @@
 File taht contains all methods to interact with MongoDB.
 """
 import json
-import pprint
 from pymongo import MongoClient
 from collections import OrderedDict
 from config import *
@@ -21,8 +20,6 @@ class DbManager:
         """
         #TODO: put username and password
         self.client = MongoClient(host=DB_HOST_NAME, port=DB_PORT)
-        # DB conection
-        # db name
         self.db = self.client[DB_DATABASE]
 
     @staticmethod
@@ -63,6 +60,8 @@ class DbManager:
         """
         response = []
         for element in self.db[collectionName].find(filter):
+            if type(element['_id']) is not str:
+                element['_id'] = str(element['_id'])
             response.append(element)
         return response
 
@@ -70,7 +69,7 @@ class DbManager:
         """
         Insert one element on collection.
         collectionName (string): Name of the colletion to use.
-        element (dict):
+        element (dict): parameters to filter the required elements.
         
         Returns
         ----------
@@ -78,7 +77,6 @@ class DbManager:
         """
         response = self.db[collectionName].insert_one(element)
         return response.inserted_id
-        # print(f"One tutorial: {result.inserted_id}, {tutorial1}")
 
     def updateOne(self, collectionName, filter, element):
         """
@@ -91,7 +89,8 @@ class DbManager:
         ----------
 
         """
-        return self.db[collectionName].update_one(filter, {"$set": element})
+        response = self.db[collectionName].update_one(filter, {"$set": element})
+        return response.raw_result
 
     def delete(self, collectionName, filter):
         """

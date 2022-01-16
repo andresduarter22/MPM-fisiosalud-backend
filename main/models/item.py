@@ -1,21 +1,52 @@
 """
-Item
-    Item_id: PK, AUTO, NOT_NULL, int
-    Area_id: FK, AUTO, NOT_NULL, int
-    Item_name: str, NOT_NULL
-    Item_description: TEXT
+File that contains all functions related with the item actions.
 """
-
-from main.models.working_area import WorkingArea
-from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, Integer, String, Text, ForeignKey
-
-Base = declarative_base()
+from main.database_manager.db_manager import DbManager
 
 
-class Item(Base):
-    __tablename__ = 'item'
-    item_id = Column(Integer, primary_key=True, nullable=False)
-    area_id = Column(Integer, ForeignKey(WorkingArea.area_id), nullable=False)
-    item_name = Column(String(100), nullable=False)
-    item_description = Column(Text)
+class Item():
+    """
+
+    """
+
+    def __init__(self):
+        """
+
+        """
+        self.collection_name = "item"
+
+    def select(self, filter=None):
+        """
+        
+        """
+        try:
+           return DbManager.get_instance().select(self.collection_name, filter)
+        except:
+            print("ay nooooo")
+
+    def insert(self, object):
+        """
+        
+        """
+        try:
+            id = DbManager.get_instance().insertOne(self.collection_name, object)
+            return self.select({"_id": id})
+        except:
+            print("ay nooooo")
+
+    def update(self, filter, object):
+        """
+        
+        """
+        try:
+            return DbManager.get_instance().updateOne(self.collection_name, filter, object)
+        except:
+            print("ay nooooo")
+
+    def delete(self, filter):
+        """
+        """
+        try:
+            DbManager.get_instance().delete(self.collection_name, filter)
+        except:
+            print("ay nooooo")

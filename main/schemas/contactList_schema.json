@@ -1,7 +1,10 @@
 {
     "$jsonSchema": {
         "bsonType": "object",
-        "required": [ "contact_name", "contact_phone_number"],
+        "required": [
+            "contact_name",
+            "contact_phone_number"
+        ],
         "properties": {
             "contact_name": {
                 "bsonType": "string",

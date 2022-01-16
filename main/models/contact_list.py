@@ -1,22 +1,52 @@
 """
-Contact List
-    Contact_id: PK, AUTO, NOT_NULL, int
-    Contact_name: str, NOT_NULL
-    Contact_phone_number: str, NOT_NULL
-    Contact_email: str
-    Additional_info: str
+File that contains all functions related with the contact list actions.
 """
-
-from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, Integer, String, Text
-
-Base = declarative_base()
+from main.database_manager.db_manager import DbManager
 
 
-class ContactList(Base):
-    __tablename__ = 'contact_list'
-    contact_id = Column(Integer, primary_key=True, nullable=False)
-    contact_name = Column(String(300), nullable=False)
-    contact_phone_number = Column(String(20), nullable=False)
-    contact_email = Column(String(50))
-    additional_info = Column(Text)
+class ContactList():
+    """
+    
+    """
+
+    def __init__(self):
+        """
+        
+        """
+        self.collection_name = "contactList"
+
+    def select(self, filter=None):
+        """
+        
+        """
+        try:
+           return DbManager.get_instance().select(self.collection_name, filter)
+        except:
+            print("ay nooooo")
+
+    def insert(self, object):
+        """
+        
+        """
+        try:
+            id = DbManager.get_instance().insertOne(self.collection_name, object)
+            return self.select({"_id": id})
+        except:
+            print("ay nooooo")
+
+    def update(self, filter, object):
+        """
+        
+        """
+        try:
+            return DbManager.get_instance().updateOne(self.collection_name, filter, object)
+        except:
+            print("ay nooooo")
+
+    def delete(self, filter):
+        """
+        """
+        try:
+            DbManager.get_instance().delete(self.collection_name, filter)
+        except:
+            print("ay nooooo")
