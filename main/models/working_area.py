@@ -1,19 +1,53 @@
 """
-Working Area
-    Area_id: PK, AUTO, NOT_NULL, int
-    Area_name: str, NOT_NULL
-    Area_total_capacity: int
-    Aviability: Boolean
+File that contains all functions related with the working area actions.
 """
-from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, Integer, String, Boolean
-
-Base = declarative_base()
+from main.database_manager.db_manager import DbManager
 
 
-class WorkingArea(Base):
-    __tablename__ = 'working_area'
-    area_id = Column(Integer, primary_key=True)
-    area_name = Column(String(50))
-    area_total_capacity = Column(Integer)
-    availability = Column(Boolean)
+class WorkingArea():
+    """
+
+    """
+
+    def __init__(self):
+        """
+
+        """
+        self.collection_name = "workingArea"
+
+    def select(self, filter=None):
+        """
+        
+        """
+        try:
+           return DbManager.get_instance().select(self.collection_name, filter)
+        except:
+            print("ay nooooo")
+
+    def insert(self, object):
+        """
+        
+        """
+        try:
+            id = DbManager.get_instance().insertOne(self.collection_name, object)
+            return self.select({"_id": id})
+        except:
+            print("ay nooooo")
+
+    def update(self, filter, object):
+        """
+        
+        """
+        try:
+            return DbManager.get_instance().updateOne(self.collection_name, filter, object)
+        except:
+            print("ay nooooo")
+
+    def delete(self, filter):
+        """
+        
+        """
+        try:
+            DbManager.get_instance().delete(self.collection_name, filter)
+        except:
+            print("ay nooooo")

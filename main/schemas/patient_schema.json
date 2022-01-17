@@ -55,7 +55,7 @@
             },
             "additional_info": {
                 "bsonType": "string",
-                "description": "Aditional information related with the patient."
+                "description": "Additional information related with the patient."
             },
             "old_id": {
                 "bsonType": "string",

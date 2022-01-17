@@ -8,15 +8,15 @@
         "properties": {
             "area_id": {
                 "bsonType": "string",
-                "description": ""
+                "description": "ID of the area of the therapy."
             },
             "date": {
-                "bsonType": "string",
-                "description": ""
+                "bsonType": "date",
+                "description": "The date the session was held."
             },
             "additional_info": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Additional information related with the therapy."
             }
         }
     }

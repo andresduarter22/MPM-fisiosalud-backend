@@ -2,22 +2,27 @@
     "$jsonSchema": {
         "bsonType": "object",
         "required": [
-            "patiten_id",
+            "patitent_id",
             "basic_info",
+            "therapies",
             "additional_info"
         ],
         "properties": {
-            "patiten_id": {
+            "patitent_id": {
                 "bsonType": "string",
                 "description": "User identification."
             },
             "basic_info": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Description of the treatment."
+            },
+            "therapies": {
+                "bsonType": "array",
+                "description": "List of all therapies related with the treatment."
             },
             "additional_info": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Additional information related with the treatment."
             }
         }
     }

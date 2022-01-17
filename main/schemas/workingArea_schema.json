@@ -12,11 +12,11 @@
                 "description": "Name of the working area."
             },
             "area_total_capacity": {
-                "bsonType": "int",
+                "bsonType": "number",
                 "description": "Total patient capacity per working area."
             },
             "availability": {
-                "bsonType": "boolean",
+                "bsonType": "bool",
                 "description": "Status of the working area."
             }
         }

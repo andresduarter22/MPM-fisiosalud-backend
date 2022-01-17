@@ -1,20 +1,53 @@
 """
-Treatment
-    Treatment_id: PK, AUTO, NOT_NULL, int
-    Patiten_id: FK, NOT_NULL, str
-    Basic_info: TEXT, NOT_NULL
-    Additional_info: TEXT
+File that contains all functions related with the treatment actions.
 """
-from main.models.patient import Patient
-from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, Integer, String, ForeignKey, Text
-
-Base = declarative_base()
+from main.database_manager.db_manager import DbManager
 
 
-class Treatment(Base):
-    __tablename__ = 'treatment'
-    treatment_id = Column(Integer, primary_key=True, nullable=False)
-    patiten_id = Column(String(100), ForeignKey(Patient.id), nullable=False)
-    basic_info = Column(Text, nullable=False)
-    additional_info = Column(Text)
+class Treatment():
+    """
+
+    """
+
+    def __init__(self):
+        """
+
+        """
+        self.collection_name = "treatment"
+
+    def select(self, filter=None):
+        """
+        
+        """
+        try:
+           return DbManager.get_instance().select(self.collection_name, filter)
+        except:
+            print("ay nooooo")
+
+    def insert(self, object):
+        """
+        
+        """
+        try:
+            id = DbManager.get_instance().insertOne(self.collection_name, object)
+            return self.select({"_id": id})
+        except:
+            print("ay nooooo")
+
+    def update(self, filter, object):
+        """
+        
+        """
+        try:
+            return DbManager.get_instance().updateOne(self.collection_name, filter, object)
+        except:
+            print("ay nooooo")
+
+    def delete(self, filter):
+        """
+        
+        """
+        try:
+            DbManager.get_instance().delete(self.collection_name, filter)
+        except:
+            print("ay nooooo")

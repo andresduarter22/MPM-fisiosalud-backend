@@ -1,21 +1,53 @@
 """
-Document
-    Document_id: PK, AUTO, NOT_NULL, int
-    Patient_id: FK, AUTO, NOT_NULL, str
-    Path: BLOB, NOT_NULL
-    Additional_info: TEXT
+File that contains all functions related with the document actions.
 """
-
-from main.models.patient import Patient
-from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, Integer, BLOB, Text, String, ForeignKey
-
-Base = declarative_base()
+from main.database_manager.db_manager import DbManager
 
 
-class Document(Base):
-    __tablename__ = 'document'
-    document_id = Column(Integer, nullable=False, primary_key=True)
-    patient_id = Column(String(100), ForeignKey(Patient.patient_id))
-    path = Column(BLOB, nullable=False)
-    additional_info = Column(Text)
+class Document():
+    """
+
+    """
+
+    def __init__(self):
+        """
+
+        """
+        self.collection_name = "document"
+
+    def select(self, filter=None):
+        """
+        
+        """
+        try:
+           return DbManager.get_instance().select(self.collection_name, filter)
+        except:
+            print("ay nooooo")
+
+    def insert(self, object):
+        """
+        
+        """
+        try:
+            id = DbManager.get_instance().insertOne(self.collection_name, object)
+            return self.select({"_id": id})
+        except:
+            print("ay nooooo")
+
+    def update(self, filter, object):
+        """
+        
+        """
+        try:
+            return DbManager.get_instance().updateOne(self.collection_name, filter, object)
+        except:
+            print("ay nooooo")
+
+    def delete(self, filter):
+        """
+        
+        """
+        try:
+            DbManager.get_instance().delete(self.collection_name, filter)
+        except:
+            print("ay nooooo")

@@ -15,19 +15,19 @@
             },
             "staff_name": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Name of the worker."
             },
             "staff_phone_number": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Contact phone number of the worker."
             },
             "staff_email": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Contact email address of the worker."
             },
             "staff_role": {
                 "bsonType": "string",
-                "description": ""
+                "description": "Role of the worker inside the system."
             }
         }
     }

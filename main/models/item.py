@@ -45,6 +45,7 @@ class Item():
 
     def delete(self, filter):
         """
+        
         """
         try:
             DbManager.get_instance().delete(self.collection_name, filter)
