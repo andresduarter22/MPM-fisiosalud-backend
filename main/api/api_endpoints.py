@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restful import Api
+from flask_cors import CORS
 from main.endpoints.patientEndpoints import PatientEndpoints, PatientEndpointsByID
 from main.endpoints.itemEndpoints import ItemEndpoints
 from main.endpoints.shopArticleEndpoints import ShopArticleEndpoints
@@ -15,6 +16,7 @@ from main.database_manager.db_manager import DbManager
 class FisiosaludAPI(object):
     def __init__(self):
         self.app = Flask(__name__)
+        CORS(self.app)
         api = Api(self.app)
         self.addResources(api)
 
