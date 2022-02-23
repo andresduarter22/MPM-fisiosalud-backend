@@ -2,6 +2,7 @@
 File that contains all functions related with the contact list actions.
 """
 from main.database_manager.db_manager import DbManager
+from bson.objectid import ObjectId
 
 
 class ContactList():
@@ -47,6 +48,12 @@ class ContactList():
         """
         """
         try:
-            DbManager.get_instance().delete(self.collection_name, filter)
+            if '_id' in filter:
+                print(filter["_id"])
+                filter["_id"] = ObjectId(filter["_id"])
+                DbManager.get_instance().delete(self.collection_name, filter)
+            else:
+                DbManager.get_instance().delete(self.collection_name, filter)
+            
         except:
             print("ay nooooo")
