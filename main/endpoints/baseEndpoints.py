@@ -2,7 +2,7 @@
 
 """
 from flask import jsonify, request
-from flask_restful import Resource
+from flask_restful import Resource, reqparse
 
 
 class BaseEndpoints(Resource):
@@ -21,8 +21,13 @@ class BaseEndpoints(Resource):
 
         """
         data = request.get_json()
+        parser = reqparse.RequestParser()
+        parser.add_argument('id', type=str)
+        args = parser.parse_args()
         if data:
             response = jsonify(self.model.select(data['filter']))
+        elif args.id:
+            response = jsonify(self.model.select({"_id": str(args.id)}))
         else:
             response = jsonify(self.model.select())
 

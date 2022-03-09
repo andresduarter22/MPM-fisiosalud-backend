@@ -20,6 +20,8 @@ class ContactList():
         """
         
         """
+        if filter and not isinstance(filter["_id"], ObjectId):
+            filter["_id"] = ObjectId(filter["_id"])
         try:
            return DbManager.get_instance().select(self.collection_name, filter)
         except:
@@ -49,7 +51,6 @@ class ContactList():
         """
         try:
             if '_id' in filter:
-                print(filter["_id"])
                 filter["_id"] = ObjectId(filter["_id"])
                 DbManager.get_instance().delete(self.collection_name, filter)
             else:
