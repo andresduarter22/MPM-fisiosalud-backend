@@ -41,8 +41,10 @@ class ContactList():
         """
         
         """
+        if filter and not isinstance(filter["_id"], ObjectId):
+            filter["_id"] = ObjectId(filter["_id"])
         try:
-            return DbManager.get_instance().updateOne(self.collection_name, filter, object)
+           return DbManager.get_instance().updateOne(self.collection_name, filter, object)
         except:
             print("ay nooooo")
 
