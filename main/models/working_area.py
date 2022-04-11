@@ -2,6 +2,7 @@
 File that contains all functions related with the working area actions.
 """
 from main.database_manager.db_manager import DbManager
+from bson.objectid import ObjectId
 
 
 class WorkingArea():
@@ -19,6 +20,8 @@ class WorkingArea():
         """
         
         """
+        if filter and not isinstance(filter["_id"], ObjectId):
+            filter["_id"] = ObjectId(filter["_id"])
         try:
            return DbManager.get_instance().select(self.collection_name, filter)
         except:
@@ -38,8 +41,10 @@ class WorkingArea():
         """
         
         """
+        if filter and not isinstance(filter["_id"], ObjectId):
+            filter["_id"] = ObjectId(filter["_id"])
         try:
-            return DbManager.get_instance().updateOne(self.collection_name, filter, object)
+           return DbManager.get_instance().updateOne(self.collection_name, filter, object)
         except:
             print("ay nooooo")
 
@@ -48,6 +53,11 @@ class WorkingArea():
         
         """
         try:
-            DbManager.get_instance().delete(self.collection_name, filter)
+            if '_id' in filter:
+                filter["_id"] = ObjectId(filter["_id"])
+                DbManager.get_instance().delete(self.collection_name, filter)
+            else:
+                DbManager.get_instance().delete(self.collection_name, filter)
+            
         except:
             print("ay nooooo")

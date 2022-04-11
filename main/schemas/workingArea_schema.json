@@ -4,7 +4,7 @@
         "required": [
             "area_name",
             "area_total_capacity",
-            "availability"
+            "area_available"
         ],
         "properties": {
             "area_name": {
@@ -15,7 +15,7 @@
                 "bsonType": "number",
                 "description": "Total patient capacity per working area."
             },
-            "availability": {
+            "area_available": {
                 "bsonType": "bool",
                 "description": "Status of the working area."
             }
