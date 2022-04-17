@@ -11,7 +11,7 @@
                 "description": "ID of the area of the therapy."
             },
             "date": {
-                "bsonType": "date",
+                "bsonType": "string",
                 "description": "The date the session was held."
             },
             "additional_info": {

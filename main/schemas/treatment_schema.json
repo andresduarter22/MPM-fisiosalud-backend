@@ -2,15 +2,15 @@
     "$jsonSchema": {
         "bsonType": "object",
         "required": [
-            "patitent_id",
+            "patitent_info",
             "basic_info",
             "therapies",
             "additional_info"
         ],
         "properties": {
             "patitent_id": {
-                "bsonType": "string",
-                "description": "User identification."
+                "bsonType": "array",
+                "description": "List with the patient ID and name."
             },
             "basic_info": {
                 "bsonType": "string",
