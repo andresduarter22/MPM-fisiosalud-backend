@@ -2,6 +2,7 @@
 File that contains all functions related with the staff actions.
 """
 from main.database_manager.db_manager import DbManager
+import hashlib
 
 
 class Staff():
@@ -19,6 +20,7 @@ class Staff():
         """
         
         """
+        # TODO: remove password, salt and pepper parameters from response
         try:
            return DbManager.get_instance().select(self.collection_name, filter)
         except:
@@ -29,6 +31,9 @@ class Staff():
         
         """
         try:
+            hasher = hashlib.sha256()
+            hasher.update(object["staff_password"].encode('utf-8'))
+            object["staff_password"] = hasher.hexdigest()
             id = DbManager.get_instance().insertOne(self.collection_name, object)
             return self.select({"_id": id})
         except:

@@ -3,6 +3,7 @@
         "bsonType": "object",
         "required": [
             "area_id",
+            "time",
             "date"
         ],
         "properties": {
@@ -13,6 +14,14 @@
             "date": {
                 "bsonType": "string",
                 "description": "The date the session was held."
+            },
+            "time": {
+                "bsonType": "string",
+                "description": "The time the session was held."
+            },
+            "duration": {
+                "bsonType": "int",
+                "description": "The time the session was held."
             },
             "additional_info": {
                 "bsonType": "string",

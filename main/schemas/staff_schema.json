@@ -6,7 +6,8 @@
             "staff_name",
             "staff_phone_number",
             "staff_email",
-            "staff_role"
+            "staff_role",
+            "staff_password"
         ],
         "properties": {
             "_id": {
@@ -16,6 +17,10 @@
             "staff_name": {
                 "bsonType": "string",
                 "description": "Name of the worker."
+            },
+            "staff_password": {
+                "bsonType": "string",
+                "description": "Password hash."
             },
             "staff_phone_number": {
                 "bsonType": "string",

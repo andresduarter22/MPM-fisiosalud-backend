@@ -3,12 +3,13 @@
 """
 from flask import jsonify, request
 from flask_restful import Resource, reqparse
-
+from main.middleware.authentication import token_required
 
 class BaseEndpoints(Resource):
     """
 
     """
+    method_decorators = [token_required]
 
     def __init__(self, model):
         """

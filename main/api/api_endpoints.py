@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restful import Api
 from flask_cors import CORS
+from main.endpoints.authenticationEndpoints import AuthenticationEndpoints
 from main.endpoints.patientEndpoints import PatientEndpoints, PatientEndpointsByID
 from main.endpoints.itemEndpoints import ItemEndpoints
 from main.endpoints.shopArticleEndpoints import ShopArticleEndpoints
@@ -44,3 +45,5 @@ class FisiosaludAPI(object):
                          endpoint='staff')
         api.add_resource(PatientEndpointsByID,
                          "/api/v1/patient/<string:patient_id>")
+        api.add_resource(AuthenticationEndpoints,
+                         "/api/v1/authentication", endpoint='authentication')
