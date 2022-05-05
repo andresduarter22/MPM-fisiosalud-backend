@@ -44,6 +44,9 @@ class Staff():
         
         """
         try:
+            hasher = hashlib.sha256()
+            hasher.update(object["staff_password"].encode('utf-8'))
+            object["staff_password"] = hasher.hexdigest()
             return DbManager.get_instance().updateOne(self.collection_name, filter, object)
         except:
             print("ay nooooo")

@@ -1,2 +1,19 @@
-collections = ['patient', 'shopArticle', 'item', 'contactList',
-               'staff', 'document', 'therapy', 'treatment', 'workingArea']
+from enum import IntEnum
+
+collections = [
+    "patient",
+    "shopArticle",
+    "item",
+    "contactList",
+    "staff",
+    "document",
+    "therapy",
+    "treatment",
+    "workingArea",
+]
+
+
+class TokenType(IntEnum):
+    ID = 0
+    ACCESS = 1
+    REFRESH = 2

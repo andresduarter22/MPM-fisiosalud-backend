@@ -3,4 +3,4 @@ Flask
 flask_restful
 python-dotenv
 flask-cors
-jwt
+PyJWT

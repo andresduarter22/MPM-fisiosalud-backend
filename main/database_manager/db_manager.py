@@ -2,7 +2,11 @@
 File taht contains all methods to interact with MongoDB.
 """
 import json
-from pymongo import MongoClient
+from pprint import pprint
+import string
+import random
+import hashlib
+from pymongo.mongo_client import MongoClient
 from collections import OrderedDict
 from config import *
 from main.utils.constants import collections
@@ -47,6 +51,23 @@ class DbManager:
                                    ('validator', schema),
                                    ('validationLevel', 'moderate')])
                 self.db.command(cmd)
+
+        # create admin account
+        # letters = string.ascii_lowercase
+        # admin_pass = ''.join(random.choice(letters) for _ in range(32))
+        admin_pass = 'ukfcbyzbrvkpdigospyvepzrzluxizcf1'
+        hasher = hashlib.sha256()
+        hasher.update(admin_pass.encode('utf-8'))
+        print("Initial admin password: ", admin_pass.encode('utf-8'),
+                "change this as soon as possible")
+        self.insertOne("staff", {
+            "_id": "0",
+            "staff_name": "admin",
+            "staff_phone_number": "7200098",
+            "staff_email": "andres@gmail.com",
+            "staff_role": "admin",
+            "staff_password": hasher.hexdigest()
+        })
 
     def select(self, collectionName, filter=None):
         """
