@@ -134,3 +134,5 @@ config.py
 # Other directories
 idea/*
 .idea
+main/pictures/unknown_patient/*
+main/pictures/known_patients/*

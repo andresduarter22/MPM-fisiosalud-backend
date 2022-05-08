@@ -4,7 +4,9 @@
         "required": [
             "area_id",
             "time",
-            "date"
+            "date",
+            "therapy_status",
+            "action"
         ],
         "properties": {
             "area_id": {
@@ -18,6 +20,10 @@
             "time": {
                 "bsonType": "string",
                 "description": "The time the session was held."
+            },
+            "therapy_status": {
+                "bsonType": "string",
+                "description": "The status of the therapy. Could be open, closed, or cancelled."
             },
             "duration": {
                 "bsonType": "int",

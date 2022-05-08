@@ -2,7 +2,7 @@
 File that contains all functions related with the patient actions.
 """
 from main.database_manager.db_manager import DbManager
-
+from main.utils.face_recon import save_patient_image 
 
 class Patient:
     """
@@ -29,6 +29,9 @@ class Patient:
         
         """
         try:
+            patient_image = object["patient_image"]
+            save_patient_image(patient_image, object['patient_name'], object['_id'])
+            del object["patient_image"]
             id = DbManager.get_instance().insertOne(self.collection_name, object)
             return self.select({"_id": id})
         except:

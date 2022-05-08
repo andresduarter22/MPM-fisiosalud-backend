@@ -3,6 +3,8 @@ File that contains all functions related with the therapy actions.
 """
 from main.database_manager.db_manager import DbManager
 from bson.objectid import ObjectId
+from main.utils.face_recon import recognize_face, save_image
+from main.utils.constants import UNKNOWN_FACES_DIR
 
 
 class Therapy():
@@ -44,7 +46,24 @@ class Therapy():
         if filter and not isinstance(filter["_id"], ObjectId):
             filter["_id"] = ObjectId(filter["_id"])
         try:
-           return DbManager.get_instance().updateOne(self.collection_name, filter, object)
+            action_taken = object["action"]
+            del object["action"]
+            if action_taken == "validate":
+                save_image(object["patient_image"],
+                           "unknown_patient", UNKNOWN_FACES_DIR)
+                face_recon_response = recognize_face()
+                if face_recon_response["result"]:
+                    object["therapy_status"] = "closed"
+                    del object["patient_image"]
+                    DbManager.get_instance().updateOne(self.collection_name, filter, object)
+                return face_recon_response
+            elif action_taken == "cancel":
+                object["therapy_status"] = "cancelled"
+                DbManager.get_instance().updateOne(self.collection_name, filter, object)
+                return {"result": True}
+            elif action_taken == "update":
+                return DbManager.get_instance().updateOne(self.collection_name, filter, object)
+
         except:
             print("ay nooooo")
 
@@ -58,6 +77,6 @@ class Therapy():
                 DbManager.get_instance().delete(self.collection_name, filter)
             else:
                 DbManager.get_instance().delete(self.collection_name, filter)
-            
+
         except:
             print("ay nooooo")
