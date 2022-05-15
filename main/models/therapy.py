@@ -3,7 +3,7 @@ File that contains all functions related with the therapy actions.
 """
 from main.database_manager.db_manager import DbManager
 from bson.objectid import ObjectId
-from main.utils.face_recon import recognize_face, save_image
+from main.utils.face_recon import delete_image, recognize_face, save_image, delete_image
 from main.utils.constants import UNKNOWN_FACES_DIR
 
 
@@ -36,8 +36,8 @@ class Therapy():
         try:
             id = DbManager.get_instance().insertOne(self.collection_name, object)
             return self.select({"_id": id})
-        except:
-            print("ay nooooo")
+        except Exception as e:
+            print(e)
 
     def update(self, filter, object):
         """
@@ -56,6 +56,7 @@ class Therapy():
                     object["therapy_status"] = "closed"
                     del object["patient_image"]
                     DbManager.get_instance().updateOne(self.collection_name, filter, object)
+                delete_image(f"{UNKNOWN_FACES_DIR}/unknown_patient.jpg")
                 return face_recon_response
             elif action_taken == "cancel":
                 object["therapy_status"] = "cancelled"
@@ -65,7 +66,7 @@ class Therapy():
                 return DbManager.get_instance().updateOne(self.collection_name, filter, object)
 
         except:
-            print("ay nooooo")
+            print("Error updating therapy")
 
     def delete(self, filter):
         """

@@ -5,8 +5,7 @@
             "area_id",
             "time",
             "date",
-            "therapy_status",
-            "action"
+            "therapy_status"
         ],
         "properties": {
             "area_id": {

@@ -68,6 +68,37 @@ class DbManager:
             "staff_role": "admin",
             "staff_password": hasher.hexdigest()
         })
+        area = self.insertOne("workingArea", {
+            "area_name": "Fisioterapia",
+            "area_total_capacity": 12,
+            "area_available": True
+        })
+        patient = self.insertOne("patient", {            
+            "_id": "0",
+            "patient_name": "andres",
+            "patient_email": "andres@gmail.com",
+            "patient_nickname": "dinis",
+            "patient_birthday": "01/01/2000",
+            "patient_phone_number": "7200098",
+            "patient_address": "calle falsa 123",
+            "reference_contact_name" : "andres",
+            "reference_contact_number": "7200098"
+            })
+        # treatment = self.insertOne("treatment", {
+        #     "patitent_info": [patient],
+        #     "basic_info": "test basic info",
+        #     "threrapies": [],
+        #     "additional_info": "test additional info"
+        #     })
+        
+        therapy = self.insertOne("therapy", {
+            "area_id": "0",
+            "time": "10:00:00.001Z",
+            "date": "2022-05-08",
+            "therapy_status": "open",
+            "duration": 60
+        })
+        print("therapy id: ", therapy)
 
     def select(self, collectionName, filter=None):
         """
