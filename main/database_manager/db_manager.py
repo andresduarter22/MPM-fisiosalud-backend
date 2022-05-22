@@ -84,12 +84,6 @@ class DbManager:
             "reference_contact_name" : "andres",
             "reference_contact_number": "7200098"
             })
-        # treatment = self.insertOne("treatment", {
-        #     "patitent_info": [patient],
-        #     "basic_info": "test basic info",
-        #     "threrapies": [],
-        #     "additional_info": "test additional info"
-        #     })
         
         therapy = self.insertOne("therapy", {
             "area_id": "0",

@@ -54,7 +54,10 @@ class Staff():
     def delete(self, filter):
         """
         """
-        try:
-            DbManager.get_instance().delete(self.collection_name, filter)
-        except:
-            print("ay nooooo")
+        if filter["_id"] == "0":
+            return { "error": "You can't delete the admin user" }
+        else: 
+            try:
+                DbManager.get_instance().delete(self.collection_name, filter)
+            except:
+                print("ay nooooo")

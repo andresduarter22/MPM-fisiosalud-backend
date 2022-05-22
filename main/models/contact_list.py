@@ -2,6 +2,7 @@
 File that contains all functions related with the contact list actions.
 """
 from main.database_manager.db_manager import DbManager
+from main.utils.string_utils import addObjectId
 from bson.objectid import ObjectId
 
 
@@ -20,8 +21,6 @@ class ContactList():
         """
         
         """
-        if filter and not isinstance(filter["_id"], ObjectId):
-            filter["_id"] = ObjectId(filter["_id"])
         try:
            return DbManager.get_instance().select(self.collection_name, filter)
         except:
@@ -41,8 +40,6 @@ class ContactList():
         """
         
         """
-        if filter and not isinstance(filter["_id"], ObjectId):
-            filter["_id"] = ObjectId(filter["_id"])
         try:
            return DbManager.get_instance().updateOne(self.collection_name, filter, object)
         except:
@@ -52,11 +49,6 @@ class ContactList():
         """
         """
         try:
-            if '_id' in filter:
-                filter["_id"] = ObjectId(filter["_id"])
-                DbManager.get_instance().delete(self.collection_name, filter)
-            else:
-                DbManager.get_instance().delete(self.collection_name, filter)
-            
+            DbManager.get_instance().delete(self.collection_name, filter)
         except:
             print("ay nooooo")

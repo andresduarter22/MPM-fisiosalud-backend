@@ -4,6 +4,7 @@
 from flask import jsonify, request
 from flask_restful import Resource
 from main.middleware.authentication import token_required
+from main.utils.string_utils import addObjectId, cleanBody
 
 class BaseEndpoints(Resource):
     """
@@ -23,7 +24,8 @@ class BaseEndpoints(Resource):
         """
         objectID = request.args.get('id')
         if objectID:
-            response = jsonify(self.model.select({"_id": str(objectID)}))
+            filterClean = addObjectId({"_id": str(objectID)}, self.model.collection_name)
+            response = jsonify(self.model.select(filterClean))
         else:
             response = jsonify(self.model.select())
 
@@ -34,7 +36,9 @@ class BaseEndpoints(Resource):
 
         """
         data = request.get_json(force=True)
-        response = jsonify(self.model.insert(data['body']))
+        bodyClean,_ = cleanBody(data['body'])
+        print(bodyClean)
+        response = jsonify(self.model.insert(bodyClean))
         return response
 
     def put(self):
@@ -42,7 +46,10 @@ class BaseEndpoints(Resource):
 
         """
         data = request.get_json(force=True)
-        response = jsonify(self.model.update(data['filter'], data['body']))
+        bodyClean, unset = cleanBody(data['body'])
+        filterClean = addObjectId(data['filter'], self.model.collection_name)
+        print("Unset", {'$unset': unset})
+        response = jsonify(self.model.update(filterClean, bodyClean))
         return response
 
     def delete(self):
@@ -50,5 +57,6 @@ class BaseEndpoints(Resource):
 
         """
         data = request.get_json(force=True)
-        response = jsonify(self.model.delete(data['filter']))
+        filterClean = addObjectId(data['filter'], self.model.collection_name)
+        response = jsonify(self.model.delete(filterClean))
         return response

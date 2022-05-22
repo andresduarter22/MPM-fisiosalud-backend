@@ -21,3 +21,4 @@ class TokenType(IntEnum):
 KNOWN_FACES_DIR = 'main/pictures/known_patients'
 UNKNOWN_FACES_DIR = 'main/pictures/unknown_patient'
 TOLERANCE = 0.4
+COLLECTONS_WITHOUT_OBJECT_ID = [ "patient", "staff" ]
