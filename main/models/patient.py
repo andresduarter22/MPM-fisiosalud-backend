@@ -1,8 +1,10 @@
 """
 File that contains all functions related with the patient actions.
 """
+import shutil
 from main.database_manager.db_manager import DbManager
-from main.utils.face_recon import save_patient_image 
+from main.utils.constants import KNOWN_FACES_DIR
+from main.utils.face_recon import save_patient_image
 
 class Patient:
     """
@@ -20,7 +22,8 @@ class Patient:
         
         """
         try:
-           return DbManager.get_instance().select(self.collection_name, filter)
+            response = DbManager.get_instance().select(self.collection_name, filter)
+            return response
         except:
             print("ay nooooo")
 
@@ -51,5 +54,6 @@ class Patient:
         """
         try:
             DbManager.get_instance().delete(self.collection_name, filter)
+            shutil.rmtree(f"{KNOWN_FACES_DIR}/{filter['_id']}")
         except:
             print("ay nooooo")

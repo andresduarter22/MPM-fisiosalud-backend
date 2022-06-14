@@ -59,7 +59,6 @@ def save_image(image_base64, image_name, image_dir):
     image_result = open(img_name, 'wb')
     image_result.write(image)
 
-
 def save_patient_image(image_base64, patient_name, patient_id, image_dir=KNOWN_FACES_DIR):
     save_image(image_base64, patient_name, f"{image_dir}/{patient_id}")
 

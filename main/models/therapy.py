@@ -1,10 +1,12 @@
 """
 File that contains all functions related with the therapy actions.
 """
+from operator import contains
 from main.database_manager.db_manager import DbManager
 from bson.objectid import ObjectId
 from main.utils.face_recon import delete_image, recognize_face, save_image, delete_image
 from main.utils.constants import UNKNOWN_FACES_DIR
+from main.models.patient import Patient
 
 
 class Therapy():
@@ -45,19 +47,27 @@ class Therapy():
         """
         if filter and not isinstance(filter["_id"], ObjectId):
             filter["_id"] = ObjectId(filter["_id"])
-        try:
+        try: 
             action_taken = object["action"]
             del object["action"]
-            if action_taken == "validate":
-                save_image(object["patient_image"],
-                           "unknown_patient", UNKNOWN_FACES_DIR)
-                face_recon_response = recognize_face()
-                if face_recon_response["result"]:
-                    object["therapy_status"] = "closed"
-                    del object["patient_image"]
-                    DbManager.get_instance().updateOne(self.collection_name, filter, object)
-                delete_image(f"{UNKNOWN_FACES_DIR}/unknown_patient.jpg")
-                return face_recon_response
+            if "validate" in action_taken:
+                if "face" in action_taken:
+                    save_image(object["patient_image"],
+                            "unknown_patient", UNKNOWN_FACES_DIR)
+                    face_recon_response = recognize_face()
+                    if face_recon_response["result"]:
+                        del object["patient_image"]
+                        DbManager.get_instance().updateOne(self.collection_name, filter, object)
+                    delete_image(f"{UNKNOWN_FACES_DIR}/unknown_patient.jpg")
+                    return face_recon_response
+                elif "id" in action_taken:
+                    patientInfo = Patient().select({"_id": object["patient_id"]})
+                    if patientInfo:
+                        del object['patient_id']
+                        DbManager.get_instance().updateOne(self.collection_name, filter, object)
+                        return patientInfo
+                    else:
+                        return {"result": False, "message": "Patient not found"}               
             elif action_taken == "cancel":
                 object["therapy_status"] = "cancelled"
                 DbManager.get_instance().updateOne(self.collection_name, filter, object)
@@ -81,3 +91,4 @@ class Therapy():
 
         except:
             print("ay nooooo")
+            

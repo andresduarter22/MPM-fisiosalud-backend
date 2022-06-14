@@ -37,7 +37,6 @@ class BaseEndpoints(Resource):
         """
         data = request.get_json(force=True)
         bodyClean,_ = cleanBody(data['body'])
-        print(bodyClean)
         response = jsonify(self.model.insert(bodyClean))
         return response
 

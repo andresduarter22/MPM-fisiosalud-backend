@@ -2,12 +2,17 @@
     "$jsonSchema": {
         "bsonType": "object",
         "required": [
+            "title",
             "area_id",
             "time",
             "date",
             "therapy_status"
         ],
         "properties": {
+            "title": {
+                "bsonType": "string",
+                "description": "must be a string and is required"
+            },
             "area_id": {
                 "bsonType": "string",
                 "description": "ID of the area of the therapy."

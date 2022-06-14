@@ -86,6 +86,7 @@ class DbManager:
             })
         
         therapy = self.insertOne("therapy", {
+            "title": "Test therapy",
             "area_id": "0",
             "time": "10:00:00.001Z",
             "date": "2022-05-08",

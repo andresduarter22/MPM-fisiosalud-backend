@@ -2,12 +2,17 @@
     "$jsonSchema": {
         "bsonType": "object",
         "required": [
+            "title",
             "patitent_info",
             "basic_info",
             "therapies",
             "additional_info"
         ],
         "properties": {
+            "title": {
+                "bsonType": "string",
+                "description": "must be a string and is required"
+            },
             "patitent_id": {
                 "bsonType": "array",
                 "description": "List with the patient ID and name."
