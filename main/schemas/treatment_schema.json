@@ -5,8 +5,7 @@
             "title",
             "patitent_info",
             "basic_info",
-            "therapies",
-            "additional_info"
+            "therapies"
         ],
         "properties": {
             "title": {

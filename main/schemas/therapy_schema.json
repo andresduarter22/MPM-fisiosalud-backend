@@ -6,12 +6,13 @@
             "area_id",
             "time",
             "date",
-            "therapy_status"
+            "therapy_status",
+            "duration"
         ],
         "properties": {
             "title": {
                 "bsonType": "string",
-                "description": "must be a string and is required"
+                "description": "Must be a string and is required"
             },
             "area_id": {
                 "bsonType": "string",
@@ -31,7 +32,7 @@
             },
             "duration": {
                 "bsonType": "int",
-                "description": "The time the session was held."
+                "description": "Amount of time the session should take."
             },
             "additional_info": {
                 "bsonType": "string",
