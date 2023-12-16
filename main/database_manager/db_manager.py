@@ -3,7 +3,6 @@ File taht contains all methods to interact with MongoDB.
 """
 import json
 from pprint import pprint
-import string
 import random
 import hashlib
 from pymongo.mongo_client import MongoClient
@@ -18,12 +17,23 @@ class DbManager:
     """
     __instance = None
 
+
     def __init__(self):
         """
         This function contains the data to create the connection with the database.
         """
         #TODO: put username and password
-        self.client = MongoClient(host=DB_HOST_NAME, port=DB_PORT)
+        tries = 0
+        while tries < 10:
+            try:
+                tries += 1
+                self.client = MongoClient(host=DB_HOST_NAME, port=DB_PORT)
+                self.client.admin.command('ping')
+            except Exception:
+                print("Cannot reach the database, retrying")
+                continue
+            break
+        
         self.db = self.client[DB_DATABASE]
 
     @staticmethod
@@ -42,7 +52,13 @@ class DbManager:
         """
         Function to initialize the database.
         """
+        created = False
+        existing_collections = self.db.list_collection_names()
         for collection in collections:
+            # if collection exists, do not create it again
+            if collection in existing_collections:
+                created = True
+                continue
             self.db[collection].drop()
             self.db.create_collection(collection)
             with(open(f'main/schemas/{collection}_schema.json') as file):
@@ -53,7 +69,11 @@ class DbManager:
                 self.db.command(cmd)
 
         # create admin account
-        # letters = string.ascii_lowercase
+        if not created:
+            self.create_default_data()
+    
+    def create_default_data(self):
+                # letters = string.ascii_lowercase
         # admin_pass = ''.join(random.choice(letters) for _ in range(32))
         admin_pass = 'ukfcbyzbrvkpdigospyvepzrzluxizcf1'
         hasher = hashlib.sha256()
@@ -73,23 +93,45 @@ class DbManager:
             "area_total_capacity": 12,
             "area_available": True
         })
-        patient = self.insertOne("patient", {            
-            "_id": "0",
+        patient = self.insertMany("patient", [{"_id": "0",
             "patient_name": "andres",
             "patient_email": "andres@gmail.com",
             "patient_nickname": "dinis",
             "patient_birthday": "01/01/2000",
             "patient_phone_number": "7200098",
-            "patient_address": "calle falsa 123",
+            "patient_address": "calle G # 111 Achumani",
             "reference_contact_name" : "andres",
-            "reference_contact_number": "7200098"
-            })
+            "reference_contact_number": "7200098"}, {"_id": "1",
+            "patient_name": "jose",
+            "patient_email": "jose@gmail.com",
+            "patient_nickname": "jose",
+            "patient_birthday": "01/01/2000",
+            "patient_phone_number": "7200090",
+            "patient_address": "calle G # 111 Achumani",
+            "reference_contact_name" : "andres",
+            "reference_contact_number": "7200098"},{"_id": "2",
+            "patient_name": "luis",
+            "patient_email": "luis@gmail.com",
+            "patient_nickname": "JL",
+            "patient_birthday": "01/01/2000",
+            "patient_phone_number": "7200009",
+            "patient_address": "calle G # 108 Achumani",
+            "reference_contact_name" : "andres",
+            "reference_contact_number": "7200098"},{"_id": "3",
+            "patient_name": "maria",
+            "patient_email": "maria@gmail.com",
+            "patient_nickname": "mag",
+            "patient_birthday": "01/01/2000",
+            "patient_phone_number": "7205098",
+            "patient_address": "calle H # 19 Achumani",
+            "reference_contact_name" : "andres",
+            "reference_contact_number": "7200098"}])
         
         therapy = self.insertOne("therapy", {
             "title": "Test therapy",
             "area_id": "0",
-            "time": "10:00:00.001Z",
-            "date": "2022-05-08",
+            "time": "19:00:00",
+            "date": "2023-03-27",
             "therapy_status": "open",
             "duration": 60
         })
@@ -124,6 +166,10 @@ class DbManager:
         """
         response = self.db[collectionName].insert_one(element)
         return response.inserted_id
+    
+    def insertMany(self, collectionName, list):
+        response = self.db[collectionName].insert_many(list)
+        return response.inserted_ids
 
     def updateOne(self, collectionName, filter, element):
         """

@@ -65,7 +65,7 @@ class Therapy():
                     if patientInfo:
                         del object['patient_id']
                         DbManager.get_instance().updateOne(self.collection_name, filter, object)
-                        return patientInfo
+                        return {"result": True, "response": patientInfo} 
                     else:
                         return {"result": False, "message": "Patient not found"}               
             elif action_taken == "cancel":

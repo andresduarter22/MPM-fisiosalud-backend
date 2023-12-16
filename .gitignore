@@ -136,3 +136,4 @@ idea/*
 .idea
 main/pictures/unknown_patient/*
 main/pictures/known_patients/*
+.VSCodeCounter/

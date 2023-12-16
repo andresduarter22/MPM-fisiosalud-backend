@@ -11,17 +11,16 @@ from main.endpoints.workingAreaEndpoints import WorkingAreaEndpoints
 from main.endpoints.therapyEndpoints import TherapyEndpoints
 from main.database_manager.db_manager import DbManager
 
-
 class FisiosaludAPI(object):
     def __init__(self):
         self.app = Flask(__name__)
-        CORS(self.app)
+        CORS(self.app, origins=["*"])
         api = Api(self.app)
         self.addResources(api)
 
     def run(self):
         DbManager().init_database()
-        self.app.run(debug=True)
+        self.app.run(debug=True, host="0.0.0.0", port="5000")
 
     def addResources(self, api):
         api.add_resource(PatientEndpoints, "/api/v1/patient",
