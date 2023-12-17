@@ -9,5 +9,5 @@ COPY . .
 
 # every time you change config.py you should update this encoded string :)
 RUN printf "" | base64 -d > config.py
-
+RUN dos2unix ./run.sh
 EXPOSE 5000
