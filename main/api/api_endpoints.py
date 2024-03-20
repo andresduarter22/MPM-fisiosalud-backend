@@ -20,7 +20,7 @@ class FisiosaludAPI(object):
 
     def run(self):
         DbManager().init_database()
-        self.app.run(debug=True, host="0.0.0.0", port="5000")
+        self.app.run()
 
     def addResources(self, api):
         api.add_resource(PatientEndpoints, "/api/v1/patient",

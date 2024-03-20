@@ -29,7 +29,8 @@ class DbManager:
                 tries += 1
                 self.client = MongoClient(host=DB_HOST_NAME, port=DB_PORT)
                 self.client.admin.command('ping')
-            except Exception:
+            except Exception as e:
+                print(e)
                 print("Cannot reach the database, retrying")
                 continue
             break
