@@ -55,6 +55,7 @@ class DbManager:
         """
         created = False
         existing_collections = self.db.list_collection_names()
+        print(existing_collections)
         for collection in collections:
             # if collection exists, do not create it again
             if collection in existing_collections:
@@ -76,7 +77,7 @@ class DbManager:
     def create_default_data(self):
                 # letters = string.ascii_lowercase
         # admin_pass = ''.join(random.choice(letters) for _ in range(32))
-        admin_pass = 'ukfcbyzbrvkpdigospyvepzrzluxizcf1'
+        admin_pass = 'patito22'
         hasher = hashlib.sha256()
         hasher.update(admin_pass.encode('utf-8'))
         print("Initial admin password: ", admin_pass.encode('utf-8'),

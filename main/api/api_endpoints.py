@@ -17,9 +17,9 @@ class FisiosaludAPI(object):
         CORS(self.app, origins=["*"])
         api = Api(self.app)
         self.addResources(api)
+        DbManager().init_database()
 
     def run(self):
-        DbManager().init_database()
         self.app.run()
 
     def addResources(self, api):

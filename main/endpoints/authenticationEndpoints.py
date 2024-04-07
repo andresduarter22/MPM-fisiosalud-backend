@@ -24,7 +24,7 @@ class AuthenticationEndpoints(Resource):
         tokens = self.model.authenticate(staff_id, staff_password)
 
         if tokens is None:
-            return {"error": "Invalid credentials"}, 403
+            return {"error": "Authentication error"}, 403
         else:
             access_token, refresh_token = tokens
 

@@ -72,9 +72,12 @@ class Therapy():
                 object["therapy_status"] = "cancelled"
                 DbManager.get_instance().updateOne(self.collection_name, filter, object)
                 return {"result": True}
+            elif action_taken == "open":
+                object["therapy_status"] = "open"
+                DbManager.get_instance().updateOne(self.collection_name, filter, object)
+                return {"result": True}
             elif action_taken == "update":
                 return DbManager.get_instance().updateOne(self.collection_name, filter, object)
-
         except:
             print("Error updating therapy")
 

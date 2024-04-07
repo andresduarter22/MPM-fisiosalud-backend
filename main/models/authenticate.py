@@ -34,11 +34,13 @@ class Authentication:
         hasher = hashlib.sha256()
         hasher.update(password_hash.encode("utf-8"))
         if len(staff) != 1:
+            print("no hay staff")
             return None
 
         if staff[0]["staff_password"] == hasher.hexdigest():
             return self.generate_token(staff[0]["_id"])
         else:
+            print("No hay token")
             return None
 
     def generate_token(self, staff_id):
